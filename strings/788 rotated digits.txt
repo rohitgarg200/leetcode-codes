@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int rotatedDigits(int N) {
+        int res=0,count=0;
+        string t;
+        for(int i=1;i<=N;i++){
+            t=to_string(i);
+            count=0;
+            for(int j=0;j<t.size();j++){
+                if(t[j]=='2' || t[j]=='5' ||t[j]=='6' ||t[j]=='9' ){
+                    count=1;
+                    
+                }
+                if(t[j]=='3' ||t[j]=='4'||t[j]=='7'){
+                    count=0;
+                    break;
+                }
+            }
+            res=res+count;
+        
+        }
+        return res;
+        
+    }
+};

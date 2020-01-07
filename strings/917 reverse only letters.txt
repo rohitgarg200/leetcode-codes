@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string reverseOnlyLetters(string s) {
+        string t=s;
+        int j=t.length()-1;
+        cout<<j;
+        for(int i=0;i<t.length();i++){
+            if((t[i]<='z' && t[i]>='a')||(t[i]<='Z'&& t[i]>='A')){
+                while((s[j]>'z' || s[j]<'a')&&(s[j]>'Z' || s[j]<'A')){
+                j--;}
+                t[i]=s[j];
+                j--;
+            }
+        }
+        return t;
+    }
+};
