@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int solve(vector<vector<vector<int>>> &a,int left,int right,int turn,vector<int> &nums){
+        if(left>right){
+            return 0;
+        }
+        if(a[left][right][turn]!=-1){
+            return a[left][right][turn];
+        }
+        if(turn==0){
+        a[left][right][turn]=max(nums[left]+solve(a,left+1,right,1,nums),nums[right]+solve(a,left,right-1,1,nums));
+    }
+    else{
+a[left][right][turn]=min(-nums[left]+solve(a,left+1,right,0,nums),-nums[right]+solve(a,left,right-1,0,nums));        
+   
+    
+    }
+    return a[left][right][turn];}
+    
+    bool PredictTheWinner(vector<int>& nums) {
+        
+        int left=0,right=nums.size();
+        if(right<=2){
+            return 1;
+        }
+        vector<vector<vector<int>>>a(right,vector<vector<int>>(right,vector<int>(2,-1)));
+        
+        int res=solve(a,left,right-1,0,nums);
+        if(res>=0){
+            return 1;
+        }
+                                     return 0;
+    }
+};

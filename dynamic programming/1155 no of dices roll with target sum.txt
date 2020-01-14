@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numRollsToTarget(int d, int f, int target) {
+        vector<vector<int>> a(d,vector<int>(target+1,0));
+        for(int i=1;i<=f;i++){
+            if(i<=target)
+            a[0][i]=1;
+        }
+        
+        for(int i=1;i<d;i++){
+            for(int t=target;t>=0;t--){
+                for(int j=f;j>=1;j--){
+                    if(t-j>=0)
+                    a[i][t]+=a[i-1][t-j];
+                    a[i][t]=a[i][t]%1000000007;
+                }
+            }
+        }
+        return a[d-1][target];
+    }
+};

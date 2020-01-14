@@ -1,0 +1,120 @@
+// 1-d solution pass all test cases
+
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& A) {
+        int large=1;
+        int count =0;
+        int comp=1;
+        for(int i=0;i<A.size()-1;i++){
+            if(count==0){
+                if(A[i]<A[i+1]){
+                    count=1;
+                    comp++;
+                }else if(A[i]>A[i+1]){
+                    count=-1;
+                    comp++;
+                }
+                else{
+                   count=0;
+                    comp=1;
+                }
+            }
+            else if(A[i]<A[i+1] && count==-1){
+                count=1;
+                comp++;
+            }
+            else if(A[i]>A[i+1] && count==1){
+                count=-1;
+                comp++;
+            }
+            else{
+                comp=1;
+                count=0;
+                i--;
+            }
+            if(large<comp){
+                large=comp;
+            }
+        }
+        
+        
+        return large;
+    }
+};
+
+// 2 d solution not a good aproach fail in memory and run time error
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& a) {
+        long long int n=a.size();
+        vector<vector<int>>b(n,vector<int>(n,-2));
+       for(int i=0;i<n;i++){
+            b[i][i]=-1;
+        
+        }
+        int large=0;
+        int large1=0;
+        int ans1=0;
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                ans1=0;
+                if(b[j][i+j-1]==1){
+                    if(a[i+j-1]>a[i+j]){
+                        ans1=-1;
+                    }
+                    else{
+                        ans1=0;
+                    }
+                }
+                else if(b[j][i+j-1]==-1){
+                    if(a[i+j-1]<a[i+j]){
+                        ans1=1;
+                    }
+                    else{
+                        ans1=0;
+                    }}b[j][i+j]=ans1;
+                    if(b[j][i+j]==1 || b[j][i+j]==-1){
+                        if(large<i){
+                            large=i;
+                        }
+                    }
+                }
+            }
+for(int i=0;i<n;i++){
+    b[i][i]=1;
+}
+        int ans=0;
+for(int i=1;i<n;i++){
+            for(int j=0;j<n-i;j++){
+                b[j][i+j]=-2;
+                ans=0;
+                if(b[j][i+j-1]==1){
+                    if(a[i+j-1]>a[i+j]){
+                        ans=-1;
+                    }
+                    else{
+                        ans=0;
+                    }
+                }
+                else if(b[j][i+j-1]==-1){
+                    if(a[i+j-1]<a[i+j]){
+                        ans=1;
+                    }
+                    else{
+                        ans=0;
+                    }}
+                b[j][i+j]=ans;
+                    if(b[j][i+j]==1 || b[j][i+j]==-1){
+                        if(large1<i){
+                            large1=i;
+                        }
+                    
+                }
+            }
+        }
+
+        return max(large,large1)+1;
+    }
+};

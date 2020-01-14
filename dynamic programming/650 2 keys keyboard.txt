@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minSteps(int n) {      
+        vector<int>a(n+1,10000);
+        a[0]=0;
+        a[1]=0;
+        int k;
+        for(int i=1;i<=n;i++){
+            for(int j=2;i*j<=n;j++){
+                k=i*j;
+                a[k]=min(a[k],a[i]+j);
+            }
+            
+            
+        }
+        return a[n];
+    }
+};
