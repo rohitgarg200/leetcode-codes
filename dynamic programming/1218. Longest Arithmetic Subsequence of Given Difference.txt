@@ -1,0 +1,110 @@
+
+// use map here 
+
+class Solution {
+public:
+    int longestSubsequence(vector<int>& arr, int diff) {
+        // this solution is using unordered map
+        unordered_map<int,int>d;
+        int result=0;
+        for(int i=0;i<arr.size();i++){
+            result=max(result,max(1,d[arr[i]-diff]+1));
+            d[arr[i]]=d[arr[i]-diff]+1;
+        }
+        return result;
+        
+        // below i use unorderd but concept is diff so my 4 cases are fail
+        //vector<long long int> a;
+        //vector<int> b;
+        /*
+        unordered_map<int,int>c;
+        if(arr.size()==0){
+            return 0;
+        }
+        //a.push_back(arr[0]+diff);
+        //b.push_back(1);
+        c.insert({arr[0]+diff,1});
+        int large1=1;
+        //int count=0;
+        //vector<int>ab(200000,)
+        for(int i=1;i<arr.size();i++){
+          //  count=0;
+            if(c[arr[i]])
+            {
+                if(c[arr[i]+diff]){
+                    cout<<arr[i];
+                    c[arr[i]+diff]=max(c[arr[i]+diff],1+c[arr[i]]);
+                    
+                    //c.erase(arr[i]);
+                }
+                else{
+                    int y=c[arr[i]]+1;
+                    c.insert({arr[i]+diff,y});
+                    cout<<"a";
+                    cout<<c.find(arr[i]+diff)->second;
+                    //c.erase(arr[i]);
+                }
+                
+            }
+            else{
+                c.insert({arr[i]+diff,1});
+            }
+            if(large1<c[arr[i]+diff]){
+                        large1=c[arr[i]+diff];
+                    }
+        }
+              //  a[j]=a[j]+diff;
+                //    count=1;
+                  //  b[j]=b[j]+1;
+                    //break;
+             //    }
+                
+            //}
+            //if(count==0){
+              //  a.push_back(arr[i]+diff);
+                //b.push_back(1);
+            //}
+        //}
+        /*int large=0;
+        for(int i=0;i<b.size();i++){
+            if(large<b[i]){
+                large=b[i];
+                
+            }
+        }*/
+       /* return large1;*/
+        // below solution gave tle error
+        
+    /*
+        
+        
+        
+        
+        
+        
+        
+        int i,j,size1=arr.size();
+        long long int cmp=0;
+        //vector<bool> a(size1,1);
+        int large=0,t=0;
+        for(int i=0;i<size1-1;i++){
+           t=1;
+            if(a[i]){
+                 cmp=arr[i]+diff;
+                for(int j=i+1;j<size1;j++){
+                    if(a[j]){
+                    if(arr[j]==cmp){
+                        t++;
+                        cmp+=diff;
+                        a[j]=0;
+                        
+                    }}
+                }
+                if(large<t){
+                    large=t;
+                }
+            }
+        }*/
+       // return large;
+    }
+};
