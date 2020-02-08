@@ -1,0 +1,56 @@
+class Solution {
+public:
+    int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
+        int a[6]={0};
+        int p[6]={0};
+        for(int i=0;i<needs.size();i++){
+            a[i]=needs[i];
+        
+        }
+        for(int i=0;i<price.size();i++){
+            p[i]=price[i];
+           
+        }
+        
+        int mini[a[0]+1][a[1]+1][a[2]+1][a[3]+1][a[4]+1][a[5]+1]={INT_MAX};
+     
+        int y[6]={0};
+        int n1=special[0].size();
+        int i,i1,i2,i3,i4,i5,pro;
+         for(i=0;i<=a[0];i++){
+            for(i1=0;i1<=a[1];i1++){
+                for(i2=0;i2<=a[2];i2++){
+                    for(i3=0;i3<=a[3];i3++){
+                        for(i4=0;i4<=a[4];i4++){
+                            for(i5=0;i5<=a[5];i5++){
+                                mini[i][i1][i2][i3][i4][i5]=INT_MAX;
+                            }}}}}}
+        for(i=0;i<=a[0];i++){
+            for(i1=0;i1<=a[1];i1++){
+                for(i2=0;i2<=a[2];i2++){
+                    for(i3=0;i3<=a[3];i3++){
+                        for(i4=0;i4<=a[4];i4++){
+                            for(i5=0;i5<=a[5];i5++){
+                                pro=(i*p[0])+(i1*p[1])+(i2*p[2])+(i3*p[3])+(i4*p[4])+(i5*p[5]);
+                                mini[i][i1][i2][i3][i4][i5]=min(mini[i][i1][i2][i3][i4][i5],pro);
+                              
+                                for(int k=0;k<special.size();k++){
+                                    
+                                    for(int l=0;l<special[k].size()-1;l++){
+                                        y[l]=special[k][l];
+                                                                            }
+                                    if((i+y[0]<=a[0]) && (i1+y[1]<=a[1]) && (i2+y[2]<=a[2]) && (i3+y[3]<=a[3]) && (i4+y[4]<=a[4]) && (i5+y[5]<=a[5]))
+                                    {mini[i+y[0]][i1+y[1]][i2+y[2]][i3+y[3]][i4+y[4]][i5+y[5]]=min(mini[i+y[0]][i1+y[1]][i2+y[2]][i3+y[3]][i4+y[4]][i5+y[5]],(mini[i][i1][i2][i3][i4][i5]+special[k][n1-1]));
+                              
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }}}
+        
+             
+        
+    return mini[a[0]][a[1]][a[2]][a[3]][a[4]][a[5]];}};
+        
