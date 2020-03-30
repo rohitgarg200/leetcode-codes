@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string customSortString(string S, string T) {
+        vector<int> A(26,0);
+        for(int i=0;i<T.size();i++){
+            A[T[i]-'a']++;
+        }
+        string RES;
+        for(int i=0;i<S.size();i++){
+            while(A[S[i]-'a']!=0){
+                RES=RES + S[i];
+                A[S[i]-'a']--;
+            }            
+        }
+        for(int i=0;i<26;i++){
+            while(A[i]!=0){
+                char temp=i+'a';
+                RES= RES + temp; 
+                A[i]--;
+            }
+        }
+        
+        
+        return RES;
+        
+        
+        
+    }
+};
