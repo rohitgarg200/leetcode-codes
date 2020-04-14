@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+            int large=nums[0];
+            int large1=nums[0];
+            int sum=0;
+            for(int i=0;i<nums.size();i++){
+                    large1=max(large1,nums[i]);
+                    
+                    sum+=nums[i];
+                    large=max(large,sum);
+                    if(sum<0){
+                            sum=0;
+                    }
+                    
+                    
+            }
+            return max(large,large1);
+        
+    }
+};

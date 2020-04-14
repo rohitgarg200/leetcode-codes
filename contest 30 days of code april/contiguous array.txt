@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+            vector<int>a(nums.size()+1,0);
+            vector<int>b(nums.size()+1,0);
+            for(int i=0;i<nums.size();i++){
+                    if(nums[i]==0){
+                            a[i+1]=1+a[i];
+                    }
+                    else{
+                            b[i+1]=1+b[i];
+                    }
+                    a[i+1]=max(a[i+1],a[i]);
+                    b[i+1]=max(b[i+1],b[i]);
+                    
+            }
+            int y=nums.size();
+            if(nums.size()%2!=0){
+                    y=y-1;
+            }
+            int x=2;
+            for(int i=y;i>=0;i=i-x){
+                    x=abs(a[i]-a[0]-b[i]+b[0]);
+                    for(int j=0;j<nums.size()+1-i;j++){
+                            if((a[j+i]-a[j])==(b[j+i]-b[j])){
+                                    return i;
+                            }
+                            x=min(x,abs(a[j+i]-a[j]-b[i+j]+b[j]));
+                            
+                    }
+            }
+            
+            
+        return 0;
+    }
+};

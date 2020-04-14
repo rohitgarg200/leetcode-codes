@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string stringShift(string s, vector<vector<int>>& shift) {
+            int start=0;
+            int n=s.size();
+            int shi;
+            for(int i=0;i<shift.size();i++){
+                    if(shift[i][0]){
+                            shi=shift[i][1]%n;
+                            start=start-shi;
+                            if(start<0){
+                                    start=start+n;
+                            }
+                            
+                    }else{
+                            shi=shift[i][1]%n;
+                            start=start+shi;
+                            if(start>n){
+                                    start=start-n;
+                            }
+                            
+                    }
+            }
+            string t=s;
+            for(int i=0;i<s.length();i++){
+                    if(i+start<n){
+                           t[i]=s[i+start];    
+                            }else{
+                            t[i]=s[i+start-n];
+                    }
+            }
+            return t;
+            
+        
+    }
+};

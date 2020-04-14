@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countElements(vector<int>& arr) {
+                if(arr.size()<=1){
+                        return 0;
+                }
+            //sort(arr.begin(),arr.end());
+            int ret=0;
+           unordered_map<int,int>a;
+            for(int i=0;i<arr.size();i++){
+                    if(a.count(arr[i])){
+                            a[arr[i]]++;
+                    }
+                    else{
+                            a.insert({arr[i],1});
+                    }
+                    
+            }
+            for(int i=0;i<=1000;i++){
+                    if(a[i]){
+                            if(a[i+1]){
+                                    ret=ret+a[i];
+                            }
+                    }
+            }
+            return ret;
+            
+              
+                }
+};

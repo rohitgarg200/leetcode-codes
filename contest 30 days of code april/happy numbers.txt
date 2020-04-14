@@ -1,0 +1,31 @@
+class Solution {
+public:
+        int check(int n,vector<int>&a){
+                int res=0;
+                if(n==1){
+                        return 1;
+                }
+                
+                while(n!=0){
+                        int temp=n%10;
+                        res+=pow(temp,2);
+                        n=n/10;
+                        
+                }
+                if(a[res]==0){
+                        a[res]=1;
+                }
+                else{
+                        return 0;
+                }
+                
+                return check(res,a);
+                
+        }
+    bool isHappy(int n) {
+        vector<int>a(1000,0);
+           return check(n,a);
+        
+        
+    }
+};

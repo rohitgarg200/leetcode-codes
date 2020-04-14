@@ -1,0 +1,83 @@
+class Solution {
+public:
+    bool backspaceCompare(string S, string T) {
+        string a,b;
+            int i=0;
+            while(i<S.length()){
+                    if(S[i]=='#'){
+                            S[i]='-';
+                                int j=i-1;
+                            while( j>=0 && (S[j]=='#' || S[j]=='-')){
+                                    j--;
+                                    
+                            }
+                            if(j>=0){
+                                    S[j]='-';
+                            }
+                    }
+                    i++;
+            }
+            
+            i=0;
+            while(i<T.length()){
+                    if(T[i]=='#'){
+                            T[i]='-';
+                                int j=i-1;
+                            while( j>=0 && (T[j]=='#' || T[j]=='-')){
+                                    j--;
+                                    
+                            }
+                            if(j>=0){
+                                    T[j]='-';
+                            }
+                    }
+                    i++;
+            }
+            i=0;
+            int j=0;
+            cout<<S<<endl<<T;
+            while(i<S.length() && j<T.length()){
+                    if(i<S.length() && S[i]=='-'){
+                            i++;
+                    }
+                    if(j<T.length() && T[j]=='-'){
+                            j++;
+                    }
+                    if(i>=S.length() || j>=T.length()){
+break;}
+                   if(i<S.length()&&j<T.length() &&S[i]!='-' && T[j]!='-'){
+                           if(S[i]==T[j]){
+                                   i++;
+                                   j++;
+                                   
+                           }else{
+                                   return 0;
+                           }
+                   }
+                    
+            }
+            
+            while(i<S.length()){
+                    if(S[i]!='-'){
+                            return 0; 
+                    }
+                    i++;
+            }
+            while(j<T.length()){
+
+            if(T[j]!='-')
+            {
+                    return 0;
+            }
+                    j++;
+                    
+                    }
+            
+            
+            
+            
+            return 1;
+                    
+            }
+    
+};

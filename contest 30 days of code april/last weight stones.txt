@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+            while(stones.size()>1){
+                    sort(stones.begin(),stones.end());
+                    int n=stones.size();
+                    int f=stones[n-1];
+                    int s=stones[n-2];
+                    if(f==s){
+                            stones.pop_back();
+                            stones.pop_back();
+                    }
+                    if(f!=s){
+                            stones.pop_back();
+                            stones[n-2]=f-s;
+                    }
+                    
+                    
+                    
+            }
+            if(stones.size()==1){
+                    return stones[0];
+            }
+            return 0;
+        
+    }
+};
