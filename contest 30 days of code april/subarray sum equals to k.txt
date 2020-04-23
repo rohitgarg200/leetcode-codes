@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+            //vector<long long int>su(nums.size(),0);
+            unordered_map<int,int>a;
+            int ret=0;
+            long long int su=0;
+            for(int i=0;i<nums.size();i++){
+                    su+=nums[i];
+                  
+                    if(su==k){
+                            ret++;
+                    }
+                    
+                    
+                    if(a.find(su-k)!=a.end()){
+                            ret+=a[su-k];
+                    }
+                    if(a.find(su)!=a.end()){
+                            a[su]++;
+                    }
+                    else{
+                            a.insert({su,1});
+                    }
+                   
+            
+            }
+            return ret;
+            
+        
+    }
+};

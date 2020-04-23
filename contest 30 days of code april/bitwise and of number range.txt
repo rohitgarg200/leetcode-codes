@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+            if(m==n){
+                    return m;
+            }
+            if(m<1 || n<1){
+                    return 0;
+            }
+            if(m==1 && n==1){
+                    return 1;
+            }
+            int a=log(m)/log(2);
+            int b=log(n)/log(2);
+            if(a==b){
+                    long long int res=m;
+                    for(long long int i=m+1;i<=n;++i){
+                            res=res&i;
+                    }
+                    return res;
+                    //return pow(2,a);
+            }
+            return 0;
+        
+    }
+};
