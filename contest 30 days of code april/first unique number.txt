@@ -1,0 +1,52 @@
+class FirstUnique {
+        queue<int>a;
+        unordered_map<int,int>b;
+        vector<int>c;
+public:
+    FirstUnique(vector<int>& nums) {
+            c=nums;
+            for(int i=0;i<nums.size();i++){
+                    if(b.find(nums[i])==b.end()){
+                    b.insert({nums[i],1});
+                            a.push(nums[i]);
+                    }else{
+                            b[nums[i]]++;
+                    }
+                    
+            }
+            
+        
+    }
+    
+    int showFirstUnique() {
+            while(a.size()!=0){
+                    if(b[a.front()]==1){
+                            return a.front();
+                    }else{
+                            a.pop();
+                    }
+            }
+            return -1;
+        
+    }
+    
+    void add(int value) {
+            c.push_back(value);
+            if(b.find(value)==b.end()){
+                b.insert({value,1});
+                    a.push(value);
+                    
+            }
+            else{
+                    b[value]++;
+            }
+        
+    }
+};
+
+/**
+ * Your FirstUnique object will be instantiated and called as such:
+ * FirstUnique* obj = new FirstUnique(nums);
+ * int param_1 = obj->showFirstUnique();
+ * obj->add(value);
+ */
