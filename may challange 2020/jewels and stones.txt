@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+            unordered_map<char,int>a;
+            for(long int i=0;i<J.length();i++){
+                    
+                    if(a.find(J[i])!=a.end()){
+                            a[J[i]]++;
+                    }else{
+                            a.insert({J[i],1});
+                    }
+            }
+            int ret=0;
+            for(long int i=0;i<S.length();i++){
+                    if(a.find(S[i])!=a.end()){
+                            ret++;
+                    }
+            }
+            return ret;
+        
+    }
+};
