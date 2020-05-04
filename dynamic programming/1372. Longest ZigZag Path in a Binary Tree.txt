@@ -1,0 +1,44 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+        int find(TreeNode * root,int c,int val){
+                if(root==NULL){
+                        return val;
+                }
+                int k=0,k1=0,k2=0,k3=0;
+                TreeNode *root1=root;
+                if(c==0){
+                        k=max(find(root->left,1,val+1),find(root->right,0,0));
+                }
+                else{
+                        k1=max(find(root1->right,0,val+1),find(root1->left,1,0));
+                }
+                return max(k,k1);
+                
+                
+        }
+        
+//         int find1(TreeNode* root,int c,int val,int max1){
+//                 if(root==NULL){
+//                         return max1;
+//                 }
+//                 max1=max(max1,max(find(root,0,-1),find(root,1,-1)));
+//                 return max(find1(root->left,c,val,max1),find1(root->right,c,val,max1));
+//         }
+        
+    int longestZigZag(TreeNode* root) {
+            
+            return max(find(root,0,-1),find(root,1,-1));
+        
+    }
+};
