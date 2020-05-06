@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& A) {
+            unordered_map<int,int>val;
+    int res=0;
+    int value=floor(A.size()/2);
+    for(int i=0;i<A.size();i++){
+        if(val.find(A[i])!=val.end()){
+            val[A[i]]++;
+            if(val[A[i]]>value){
+                return A[i];
+            }
+        }else{
+            val.insert({A[i],1});
+             if(val[A[i]]>value){
+                return A[i];
+            }
+        }
+    }
+    return res;
+        
+    }
+};
