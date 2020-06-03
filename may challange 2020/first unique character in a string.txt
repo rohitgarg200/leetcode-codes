@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+            vector<char>a;
+            vector<int>c;
+            unordered_map<char,int>b;
+            for(int i=0;i<s.length();i++){
+                    if(b.find(s[i])!=b.end()){
+                            b[s[i]]++;
+                    }else{
+                            b.insert({s[i],1});
+                            a.push_back(s[i]);
+                            c.push_back(i);
+                    }
+            }
+            int res=-1;
+            for(int i=0;i<a.size();i++){
+                    if(b[a[i]]==1){
+                            return c[i];
+                    }
+            }
+            return res;
+            
+            
+            
+        
+    }
+};
