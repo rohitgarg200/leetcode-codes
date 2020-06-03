@@ -1,0 +1,58 @@
+class Solution {
+public:
+    vector<vector<int>> intervalIntersection(vector<vector<int>>& A, vector<vector<int>>& B) {
+            //using this below approach got tle error
+            // unordered_map<long int,long int>a;
+            // for(long int i=0;i<A.size();i++){
+            //         for(long int j=A[i][0];j<=A[i][1];j++){
+            //                 a.insert({j,i});
+            //         }
+            // }
+            // vector<vector<int>>res;
+            // //int index=0;
+            // for(long int i=0;i<B.size();i++){
+            //         long int count=1;
+            //         for(long int j=B[i][0];j<=B[i][1];j++){
+            //                 vector<int>c;
+            //                 if(a.find(j)!=a.end()){
+            //                         int y=a[j];
+            //                         c.push_back(j);
+            //                     while(j<=B[i][1] && a.find(j)!=a.end() && a[j]==y){
+            //                             j++;
+            //                     }
+            //                         if(a.find(j)==a.end() || j>B[i][1] )
+            //                             j=j-1;
+            //                         if(a.find(j)!=a.end() && a[j]!=y){
+            //                                 j--;
+            //                         }
+            //                        c.push_back(j);
+            //                         ///index++;
+            //                         res.push_back(c);
+            //                 }
+            //         }
+            // }
+            // return res;
+            vector<vector<int>>a;
+            int i=0,j=0;
+            while(i<A.size() && j<B.size()){
+                    int s=max(A[i][0],B[j][0]);
+                    int l=min(A[i][1],B[j][1]);
+                    if(s<=l){
+                            vector<int>b;
+                            b.push_back(s);
+                            b.push_back(l);
+                            a.push_back(b);
+                            
+                    }
+                    if(l==A[i][1]){
+                            i++;
+                    }
+                    if(l==B[j][1]){
+                    j++;    
+                    }
+            }
+            return a;
+            
+        
+    }
+};

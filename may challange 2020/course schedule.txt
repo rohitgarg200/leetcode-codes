@@ -1,0 +1,50 @@
+class Solution {
+public:
+        
+        int ans=1;
+        int cycle=0;
+       void check(vector<vector<int>>&a,int i,vector<int>v){
+               
+                for(int j=0;j<a.size();j++){
+                if(a[i][j]==1){
+                        //a[j][i]=0;
+                        a[i][j]=0;
+                        if(v[j]==0){
+                                v[j]=1;
+                                v[i]=1;
+                                cycle++;
+                                check(a,j,v);
+                                v[i]=0;
+                                v[j]=0;
+                               
+                }
+                        else{
+                           ans=0;
+                        return;
+                                }
+                }        
+                }
+        
+        }
+        
+    bool canFinish(int N, vector<vector<int>>& dislikes) {
+            vector<vector<int>>a(N,vector<int>(N,0));
+            for(int i=0;i<dislikes.size();i++){
+            a[dislikes[i][0]][dislikes[i][1]]=1;
+            //a[dislikes[i][1]][dislikes[i][0]]=1;
+            }
+           //vector<int>v(N+1,0);
+               
+            for(int i=0;i<N;i++){
+                    vector<int>v(N,0);
+                   cycle=0;
+            if(v[i]==0){
+                //v[i]=1;
+            check(a,i,v);    
+            }    
+            }
+            
+        return ans;
+        
+    }
+};

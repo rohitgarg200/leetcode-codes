@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool dfs(vector<vector<int>>&adj,vector<int>&g,int v ,int grp){
+        if(g[v] ==-1)g[v] =grp;
+        else return g[v] ==grp;
+        for(int n:adj[v]){
+            if(!dfs(adj,g,n,1-grp))return false;
+        }
+        return true;
+    }
+    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
+        vector<int> g(N,-1);
+        vector<vector<int>>adj(N,vector<int>());
+        for(int i = 0 ; i< dislikes.size();i++){
+            adj[dislikes[i][0]-1].push_back(dislikes[i][1]-1);
+            adj[dislikes[i][1]-1].push_back(dislikes[i][0]-1);
+        }
+        for(int i = 0 ; i < N;i++){
+            if(g[i]==-1 && !dfs(adj,g,i,0)){
+                return false;
+            }
+        }
+        return true;
+    }
+};

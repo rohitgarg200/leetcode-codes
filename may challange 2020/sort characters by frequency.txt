@@ -1,0 +1,32 @@
+class Solution {
+public:
+        bool sort11(pair<char,int>&a1,pair<char,int>&b1){
+        return a1.second<b1.second;
+        }
+    string frequencySort(string s) {
+            map<char,int>a;
+            for(int i=0;i<s.length();i++){
+            if(a.find(s[i])!=a.end()){
+                    a[s[i]]++;
+            }
+                    else{
+                            a.insert({s[i],1});
+                    }
+            }
+            map<char,int> :: iterator it;
+            vector<pair<char,int>>b;
+            for(it=a.begin();it!=a.end();it++){
+                    b.push_back(make_pair(it->first,it->second));
+            }
+            sort(b.begin(),b.end(),[this](pair<char,int>a,pair<char,int>b){return sort11(a,b);});
+            string t;
+            for(int i=b.size()-1;i>=0;i--){
+                    while(b[i].second!=0){
+                    t+=b[i].first;
+                    b[i].second--;}
+            }
+            return t;
+            
+        
+    }
+};

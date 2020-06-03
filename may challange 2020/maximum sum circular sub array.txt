@@ -1,0 +1,86 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& A) {
+            int index=0;
+            long long int y=-A[0],y1=-A[0];
+            int a=A[0];
+            long long int x=A[0],x1=A[0];
+             if(x<0){
+                            x=0;
+                    }
+                    x1=max(x1,x);
+            for(int i=1;i<A.size();i++){
+                    x1=max(x1,x);
+                     x+=A[i];
+                    if(x<0){
+                            x=0;
+                    }
+                    x1=max(x1,x);
+                    if(y1<y){
+                            index=i;
+                            y1=y;
+                    }
+                    y-=A[i];
+                    if(y<0){
+                            y=0;
+                    }
+                    if(y1<y){
+                            index=i;
+                            y1=y;
+                    }
+                    a=max(a,A[i]);
+                    
+            }
+            if(a<=0){
+                    return a;
+            }
+           // cout<<index;
+            
+            int j=index;
+            if(index==A.size()-1){
+            index=0;  
+            j=-1;        
+            }
+            index++;
+            long long int large=A[index],large1=A[index];
+            large1=max(large1,large);
+                    if(large<0){
+                            large=0;
+                    }
+            index++;
+            while(index<A.size()){
+                     large1=max(large1,large);
+                     large+=A[index];
+                    
+                    large1=max(large1,large);
+                    if(large<0){
+                            large=0;
+                    }
+                    index++;
+                    
+}
+            
+            int i=0;
+            large1=max(large1,large);
+                    if(large<0){
+                            large=0;
+                    }
+           // cout<<large1;
+            while(i<=j){
+                    large1=max(large1,large);
+                     large+=A[i];
+                    if(large<0){
+                            large=0;
+                    }
+                    large1=max(large1,large);
+                        i++;
+            }
+            
+            
+            
+            
+            return max(x1,large1);
+            
+        
+    }
+};

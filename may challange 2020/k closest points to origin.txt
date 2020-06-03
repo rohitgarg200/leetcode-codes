@@ -1,0 +1,20 @@
+class Solution {
+public:
+        bool solve(pair<int,int>a,pair<int,int>b){
+                return a.first<b.first;
+        }
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+            vector<pair<long int,int>>a;
+            for(int i=0;i<points.size();i++){
+                    a.push_back({(points[i][0]*points[i][0])+(points[i][1]*points[i][1]),i});
+                    
+            }
+            sort(a.begin(),a.end(),[this](pair<int,int>a,pair<int,int>b){return solve(a,b);});
+            vector<vector<int>>res;
+            for(int i=0;i<K;i++){
+                    res.push_back(points[a[i].second]);
+            }
+            return res;
+        
+    }
+};

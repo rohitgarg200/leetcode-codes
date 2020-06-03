@@ -1,0 +1,32 @@
+class StockSpanner {
+public:
+        vector<int>a;
+        vector<int>b;
+    StockSpanner() {
+            ;
+        
+    }
+    
+    int next(int price) {
+            int i=a.size()-1;
+            while(i>=0){
+                    if(a[i]<=price){
+                    i=i-b[i];            
+                    }else{
+                           b.push_back(a.size()-i);
+                            a.push_back(price);
+                            return b[a.size()-1];
+                    }
+                }
+             b.push_back(a.size()-i);
+                            a.push_back(price);
+                            return b[a.size()-1];
+        
+    }
+};
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner* obj = new StockSpanner();
+ * int param_1 = obj->next(price);
+ */

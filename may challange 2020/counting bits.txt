@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> countBits(int num) {
+            if(num<=1){
+                    vector<int>res;
+                    res.push_back(0);
+                    if(num==0){
+                            return res;
+                    }
+                    res.push_back(1);
+                    return res;
+            }
+            vector<int>res(num+1,0);
+            res[0]=0;
+            res[1]=1;
+            for(int i=2;i<=num;i++){
+                    int y=floor(log2(i));
+                   // cout<<y;
+                    res[i]=1+res[i-pow(2,y)];
+                    
+            }
+            return res;
+        
+    }
+};

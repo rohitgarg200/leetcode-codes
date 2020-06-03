@@ -1,0 +1,38 @@
+class Solution {
+public:
+        //vector<vector<int>>a;
+        vector<vector<int>> check(vector<vector<int>>&a,int sr,int sc,
+                                  int nc,int pc,vector<vector<bool>>visit){
+        
+                if(sr<0 || sr>=a.size() || sc<0 || sc>=a[0].size()){
+                        return a;
+                }
+                
+                if(visit[sr][sc]==0 && a[sr][sc]==pc){
+                        visit[sr][sc]=1;
+                        a[sr][sc]=nc;
+                        a=check(a,sr-1,sc,nc,pc,visit);
+                        a=check(a,sr+1,sc,nc,pc,visit);
+                        a=check(a,sr,sc-1,nc,pc,visit);
+                        a=check(a,sr,sc+1,nc,pc,visit);
+                        return a;
+                }
+                else{
+                        return a;
+                }
+        }
+        
+        
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+            // for(int i=0;i<image.size();i++){
+            //     for(int j=0;j<image[i].size();j++){
+            //             int t=image[i][j];
+            //             a[i].push_back(t);
+            //     }    
+            // }
+            vector<vector<bool>>visit(image.size(),vector<bool>(image[0].size(),0));
+            
+            return check(image,sr,sc,newColor,image[sr][sc],visit);
+        //return image;
+    }
+};
