@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool solve(pair<int,int>&a,pair<int,int>&b){
+        return a.first<b.first;
+    }
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        vector<pair<int,int>>a;
+        for(int i=0;i<costs.size();i++){
+            a.push_back({costs[i][1]-costs[i][0],i});
+        }
+        sort(a.rbegin(),a.rend(),[this](pair<int,int>a,pair<int,int>b){return solve(a,b);});
+        int res=0;
+        for(int i=0;i<costs.size()/2;i++){
+            //cout<<a[i].second;
+            res=res+costs[a[i].second][0];
+        }
+        for(int i=costs.size()/2;i<costs.size();i++){
+            res=res+costs[a[i].second][1];
+        }
+        return res;
+        
+    }
+};
