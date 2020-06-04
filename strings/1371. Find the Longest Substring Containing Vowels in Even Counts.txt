@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int findTheLongestSubstring(string s) {
+        vector<vector<int>>a(s.size()+1,vector<int>(5,0));
+        unordered_map<char,int>b;
+        b.insert({'a',0});
+        b.insert({'e',1});
+        b.insert({'i',2});
+        b.insert({'o',3});
+        b.insert({'u',4});
+        for(int i=1;i<=s.size();i++){
+            if(b.find(s[i-1])!=b.end()){
+            a[i][b[s[i-1]]]=a[i-1][b[s[i-1]]]+1;    
+            }
+            for(int j=0;j<5;j++){
+                a[i][j]=max(a[i][j],a[i-1][j]);
+            }
+        }
+        int odd=0;
+        for(int i=s.size();i>0;i--){
+            odd=0;
+            //cout<<i<<"k"<<endl;
+            for(int j=0;j<=s.size()-i;j++){
+                int count=0;
+                int odd1=0;
+                for(int k=0;k<5;k++){
+                    if((a[j+i][k]-a[j][k])%2==0){
+                       // cout<<a[j+i][k]<<endl;
+                    }
+                    else{
+                        count=1;
+                    odd1++;    
+                    }
+                }
+                if(count==0){
+                    //cout<<i<<" "<<j;
+                    return i;
+                }
+                
+            }
+        }
+        
+        
+        
+       return 0; 
+        
+        
+    }
+};
