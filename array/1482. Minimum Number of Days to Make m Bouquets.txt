@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int minDays(vector<int>& bd, int m, int k) {
+        //vector<int>a=bd;
+        //sort(a.begin(),a.end());
+        if(bd.size()<m*k){
+            return -1;
+        }
+        int left=1;
+        int right=1e9;
+        int mid;
+        while(left<right)
+        {
+        mid=(left+right)/2;
+        int flow=0;
+        int c=0;
+        for(int i=0;i<bd.size();i++)
+        {       if(bd[i]>mid){
+                flow=0;
+            }else{
+                flow++;
+                if(flow>=k){
+                    c++;
+                    flow=0;
+                }
+                
+            }
+    }
+            if(c<m){
+            left=mid+1;    
+            }else{
+                right=mid;
+            }
+    }
+        return left;
+    }
+};
