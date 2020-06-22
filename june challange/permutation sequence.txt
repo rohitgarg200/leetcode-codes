@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int>g;
+    int count=0;
+    string getPermutation(int n, int k) {
+        vector<int>b;
+        for(int i=1;i<=n;i++){
+            b.push_back(i);
+        }
+        vector<int>y(10,1);
+        for(int i=2;i<=9;i++){
+            y[i]=i*y[i-1];
+        }    
+        
+        string temp="";
+        dfs(y,b,temp,k,n);
+        return temp;
+     
+        
+    }
+    
+    void dfs(vector<int>&y,vector<int>b,string& temp,int k,int n){
+        if(n==1){
+            temp+=to_string(b.back());
+        return ;
+        }
+        
+        int index=(k/y[n-1]);
+        if(k%y[n-1]==0){
+            index--;
+        }
+        temp+=to_string(b[index]);
+        b.erase(b.begin()+index);
+        k=k-index*y[n-1];
+        
+        
+        dfs(y,b,temp,k,n-1);
+    }
+};

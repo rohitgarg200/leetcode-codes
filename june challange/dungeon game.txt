@@ -1,0 +1,68 @@
+class Solution {
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        //int val=INT_MIN;
+        vector<vector<int>>a(dungeon.size()+1,vector<int>(dungeon[0].size()+1,0));
+        //int val=INT_MAX;
+        //if(dungeon.size()==0)
+        
+        if(dungeon.size()==1){
+            int val=0,sum=0;
+            for(int i=0;i<dungeon[0].size();i++){
+                sum+=dungeon[0][i];
+                val=min(sum,val);
+            }
+            return abs(val)+1;
+        }
+          if(dungeon[0].size()==1){
+            int val=0,sum=0;
+            for(int i=0;i<dungeon.size();i++){
+                sum+=dungeon[i][0];
+                val=min(sum,val);
+            }
+            return abs(val)+1;
+        }
+        
+        
+        vector<vector<int>>b=a;
+        for(int i=0;i<=dungeon.size();i++){
+            b[i][dungeon[0].size()]=100000;
+        }
+        for(int i=0;i<=dungeon[0].size();i++){
+            b[dungeon.size()][i]=100000;
+        }
+        
+        // b[0][0]=1;
+        b[1][0]=1;
+        b[dungeon.size()-1][dungeon[0].size()]=1;
+        b[dungeon.size()][dungeon[0].size()-1]=1;
+        
+        for(int i=dungeon.size()-1;i>=0;i--){
+            for(int j=dungeon[0].size()-1;j>=0;j--){
+                
+              
+                {
+                    //a[i][j]=dungeon[i-1][j-1]+max(a[i-1][j],a[i][j-1]);
+                    
+                    b[i][j]=max(min((b[i+1][j]),(b[i][j+1]))-dungeon[i][j],1);
+                }
+                 
+
+               // cout<<a[i][j]<<" ";
+                }
+            //cout<<endl;
+                
+            }
+        // for(int i=1;i<b.size();i++){
+        // for(int j=1;j<b[0].size();j++){
+        // cout<<b[i][j]<<" ";
+        // }    
+        //     cout<<endl;
+        // }
+        
+    
+        
+        return b[0][0];
+        
+    }
+};
