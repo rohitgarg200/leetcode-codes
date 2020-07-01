@@ -1,0 +1,18 @@
+// The rand7() API is already defined for you.
+// int rand7();
+// @return a random integer in the range 1 to 7
+
+class Solution {
+public:
+    int rand10() {
+        int sum1=0;
+        for(int i=0;i<9;i++)
+        {    int val=rand7();
+        sum1+=val;
+        }
+    sum1=sum1%10;
+    sum1+=1;
+    return sum1;
+
+    }
+};
