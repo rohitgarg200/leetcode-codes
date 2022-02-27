@@ -1,0 +1,65 @@
+class Solution {
+public:
+    int mctFromLeafValues(vector<int>& arr) {
+        
+        int val=arr[0]*arr[1];
+        int index=0;
+        int res1=0;
+        while(arr.size()>1){
+            int index=0;
+            int ri=-1;
+            val=arr[0]*arr[1];
+        for(int i=0;i<arr.size()-1;i++){
+            if(val>=arr[i]*arr[i+1]){
+                val=arr[i]*arr[i+1];
+                index=i;
+            int remo=min(arr[i],arr[i+1]);
+                if(remo==arr[i]){
+                    ri=i;
+                }else{
+                    ri=i+1;
+                }
+            }}
+            res1+=val;
+            arr.erase(arr.begin()+ri);
+        }
+        
+        
+        return res1;
+//         //cout<<index<<endl;
+//         int left=index-1;
+//         int right=index+1;
+//          int res=0;
+//         // val=arr[arr.size()-1];
+//         val=arr[index];
+//         while(left>=0 && right<arr.size()){
+//             int mi=min(arr[left],arr[right]);
+//             if(mi==arr[left]){
+//                 left--;
+//             }else{
+//                 right++;
+//             }
+//             res+=val*mi;
+//             val=max(mi,val);
+            
+            
+//         }
+//         while(left>=0){
+//         int mi=arr[left];
+//             left--;
+//             res+=val*mi;
+//             val=max(mi,val);
+        
+//         }
+//         // int res=0;
+//         // val=arr[0];
+//         // right=1;
+//         while(right<arr.size()){
+//              int mi=arr[right];
+//             right++;
+//             res+=val*mi;
+//             val=max(mi,val);
+//         }
+//       return res;  
+    }
+};

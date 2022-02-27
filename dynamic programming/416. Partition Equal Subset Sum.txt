@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int val=0;
+    bool canPartition(vector<int>& nums) {
+        for(int i=0;i<nums.size();i++){
+            val+=nums[i];
+        }
+        if(val%2!=0){
+            return 0;
+        }
+        val=val/2;
+        return solve(nums,0,0,0);
+        
+    }
+    
+    bool solve(vector<int>&a,int first,int second,int index){
+        vector<vector<int>>c(a.size()+1,vector<int>(val+1,0));
+        for(int i=0;i<=a.size();i++){
+            c[i][0]=1;
+        }
+        for(int i=1;i<=a.size();i++){
+            for(int j=1;j<=val;j++){
+                
+                if(a[i-1]>j){
+                    c[i][j]=c[i-1][j];
+                }else{
+                    c[i][j]=max(c[i-1][j],c[i-1][j-a[i-1]]);
+                }
+            }
+        }
+        return c[a.size()][val];
+    }
+};
